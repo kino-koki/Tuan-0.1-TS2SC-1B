@@ -1,0 +1,16 @@
+Tuan-0.1-TS2SC-1B
+Copyright 2026 六安市青奈科技有限公司 (Lu'an Qingnai Technology Co., Ltd.)
+
+This product includes software developed under the TS2SC project
+(https://github.com/kino-koki/TS2SC), licensed under the Apache License 2.0.
+
+The model weights in `weights/` are a 24-layer SGC fusion branch (144 tensors)
+plus a 411-tensor migration manifest. The 219 COPY tensors are derived from
+the upstream teacher `kino-koki/MiniCPM5-1B` and are NOT redistributed here;
+`replay_full.py` reconstructs them from the upstream weights with per-tensor
+bit-identical verification. Please review the upstream model's own license
+before use.
+
+"青小团系列 (Tuan-Models)" and "青奈 / Qingnai" are product identifiers.
+No warranty is provided for the "theoretically unlimited context" statement;
+see evidence/context_8m_theory.json for the measured boundary.

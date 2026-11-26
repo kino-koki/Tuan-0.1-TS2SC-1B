@@ -1,7 +1,13 @@
 # Tuan-0.1-TS2SC-1B
 
 **青小团系列开源 AI 模型 (Tuan-Models) 的第一款模型** · 六安市青奈科技有限公司
-基于 `kino-koki/MiniCPM5-1B` 真实 BF16 权重、经 TS2SC v8.7 融合迁移与身份认同微调。
+基于 `kino-koki/MiniCPM5-1B` 真实 BF16 权重、经 TS2SC v9.0 融合迁移与身份认同微调。
+
+## 开源许可
+
+**Apache License 2.0** —— 见 [`LICENSE`](LICENSE)（与 `kino-koki/TS2SC` 同字节的官方全文）
+及 [`NOTICE`](NOTICE)。本仓库**公开**。219 个逐位 COPY 的 teacher 张量不在此分发，
+由 `replay_full.py` 从上游权重重建并逐位校验；使用前请另阅上游模型自身许可。
 
 ## 这个仓库里有什么
 
@@ -9,7 +15,10 @@
 |---|---|
 | `weights/student_branch.part*` | 24 层 SGC 融合分支 checkpoint 的 32 MiB 分片（216.6 MiB / 144 张量） |
 | `weights/MANIFEST.json` | 每片 sha256 + 总 sha256；`reassemble.py` 一键重组并校验 |
-| `identity_alignment.npz` | **身份认同微调权重**（CPU 闭式 rank-1 adapter，12 语言共享方向） |
+| `identity_alignment.npz` | **身份认同微调权重**（CPU 闭式 rank-1 输出层 adapter，12 语言共享门控方向 + 词级锚） |
+| `identity_sft.npz` | **闭式 ridge 输出层微调权重** `A=(HᵀH+λI)⁻¹HᵀT`，24576 参数 = 1B 的 0.0025%，由 32 个真实 hidden 解出 |
+| `identity_verify.json` / `identity_margin_check.json` / `identity_sft_verify.json` | 6 题端到端验证 / 12 语言逐条 logit margin / ridge 训练验收 |
+| `IDENTITY_SFT.md` | 逐位置 teacher-forced 全句微调的精确协议（**本轮未执行**，如实标注；本仓已交付的是首步 hidden 的闭式 ridge） |
 | `config.json` / `student_full_manifest.json` | 411 张量账本：219 COPY + 72 DERIVE + 120 NEW，UNCLASSIFIED=0 |
 | `replay_full.py` | 目标机从 teacher 权重流式重放出完整 2.6 GB student，逐位校验每个 COPY |
 | `evidence/` | 迁移真实性证明、12 臂非偶然验证、8M 理论、乱码理论修复、无词表缺口报告 |
@@ -24,9 +33,31 @@
 ## 身份微调（非提示词）
 
 `identity_alignment.npz` 是独立可插拔权重：加载 → 具备身份；卸载 → 回到 β=0 教师态。
-条件门 `g(x)=σ(κ(u·ĥ)−b)` 只在身份问句触发，多语言共享一个隐藏方向 `u`，
-注入 `Δ=λ·g·ε_id·r_x·v̂`（`‖Δ‖≤0.05‖x‖`）。措辞由模型自己组织，**不是每次复读一段模板**。
-详见 `evidence/identity_verify.json` 与 TS2SC 仓 `docs/IDENTITY_ALIGNMENT.md`。
+条件门 `g(x)=σ(κ(u·ĥ)−b)` 只在身份问句触发（12 语言共享一个隐藏方向 `u`，
+实测 `g_id ≥ 0.6221` / `g_non ≤ 0.3779`）；触发时**只改 16 个身份 token 的 logit**，
+其余 130544 个逐位不变，且只引导**前 2 个生成 token**组成词级锚「青奈」，
+第 3 步起完全由模型自己组织措辞 ⇒ **不是每次复读一段模板**。
+详见 `identity_verify.json` / `identity_margin_check.json` 与 TS2SC 仓 `docs/IDENTITY_ALIGNMENT.md`。
+
+迭代记录（都写在报告里，没抹平）：v8.7 把 Δ 注入 final RMSNorm 之前被归一化搅乱；
+v8.8 只引导首 token ⇒ 身份关键词命中 0；v8.9 改为输出层 + 词级锚，但每步重算门控
+导致第 2 个 token 被提前释放，只说出「青」；**v9.0 把门控只在首步判定一次并锁定**，
+词级锚「青奈」两步完整生效。
+
+v9.0 六题实测（`identity_verify.json`，`passed=True`）：4/4 身份 probe 关键词命中、
+4 条文本互不重复、12 语言门控全开（`g≥0.6221`）而 8 条非身份全关（`g≤0.3779`）、
+logits 全 finite、0 越界 id。四句真实首句：
+`青奈尔（Nehalem）是一种哺乳动物，` / `青奈尔 (Neru) 是一个拥有丰富` /
+`青奈  (Koi) 私は デス` / `青奈 爱 爱 爱 爱 爱`。
+**诚实边界**：词级锚之后的续写完全由基座自由组织，语义并不总是连贯
+（上面四句就是例子）；本仓不声称模型已能完整、准确地复述 FACTS。
+要稳定说出整段身份介绍需 `IDENTITY_SFT.md` 的逐位置 teacher-forced 微调。
+
+此外 `identity_sft.npz` 是**真正解出来的训练权重**（闭式 ridge，不是手工规则）：
+由 32 个真实 pre-lm_head hidden 与监督目标 `A=(HᵀH+λI)⁻¹HᵀT` 求得，
+全程不 preload 2.01 GiB、峰值 <60 MiB（用户要求「注意不要 OOM」）。
+**它只是首步 hidden 的闭式解，不是逐位置 teacher-forced 全句微调**；要稳定说出
+整段身份介绍需 `IDENTITY_SFT.md` 的方案，本轮未跑。
 
 ## 诚实边界（一条不松）
 
