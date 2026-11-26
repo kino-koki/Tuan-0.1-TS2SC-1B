@@ -1,0 +1,159 @@
+{
+  "title": "解决乱码理论问题后 · 迁移后模型会不会说话（v8.4 重验证）",
+  "date": "2026-11-25 21:14:25",
+  "prompt": "<s><|im_start|>user\n请用一句话介绍你自己。<|im_end|>\n<|im_start|>assistant\n",
+  "max_new": 24,
+  "vocab_size": 130560,
+  "engine": "纯 numpy 教师前向 + 24 层 SGC 并联 hook（无 torch）",
+  "theory": {
+    "T1": "dimensionless scale contract ‖Δ‖≤βε‖x‖ (ε=0.10)",
+    "T2": "scale-invariant role bit k̂=k/(r_k+δ), k'=k̂+snr·e (snr=0.50)",
+    "T3": "finite-and-in-range decode gate"
+  },
+  "arms": {
+    "T_teacher_baseline": {
+      "text": "<think>\n嗯，用户让我用一句话介绍自己，这个问题很简单直接。用户可能是在测试我的自我介绍能力，或者想",
+      "source": "上一轮真跑"
+    },
+    "A_student_beta0": {
+      "text": "<think>\n嗯，用户让我用一句话介绍自己，这个问题很简单直接。用户可能是在测试我的自我介绍能力，或者想",
+      "ids": [
+        8,
+        220,
+        16431,
+        82579,
+        19979,
+        1066,
+        49667,
+        13498,
+        1939,
+        12978,
+        3862,
+        62201,
+        5889,
+        396,
+        13656,
+        3544,
+        8602,
+        18655,
+        7107,
+        20012,
+        13498,
+        6275,
+        18887,
+        1577
+      ],
+      "n_prompt": 15,
+      "logits_finite": true,
+      "finite_steps": 24,
+      "n_steps": 24,
+      "identical_to_teacher": true,
+      "readability": {
+        "n_chars": 53,
+        "cjk": 41,
+        "latin_mojibake": 0,
+        "has_chinese": true,
+        "readable": true
+      },
+      "decode_gate": {
+        "passed": true,
+        "logits_finite": true,
+        "n_ids": 24,
+        "n_out_of_range": 0,
+        "empty": false,
+        "vocab_size": 130560,
+        "rejected_reasons": [],
+        "note": "finite-and-in-range gate; replaces 'non-degenerate' proxy"
+      }
+    },
+    "C_student_beta1_contracted": {
+      "text": "**我**（Self-Improvement Assistant）是一个由面壁 AI 团队开发的**对话系统**。我的",
+      "ids": [
+        1207,
+        781,
+        1207,
+        1649,
+        36451,
+        34,
+        50967,
+        27823,
+        28629,
+        1519,
+        10423,
+        2508,
+        1341,
+        14048,
+        14182,
+        242,
+        20805,
+        83777,
+        1207,
+        29551,
+        5186,
+        1207,
+        396,
+        7107
+      ],
+      "n_prompt": 15,
+      "logits_finite": true,
+      "finite_steps": 24,
+      "n_steps": 24,
+      "readability": {
+        "n_chars": 59,
+        "cjk": 18,
+        "latin_mojibake": 0,
+        "has_chinese": true,
+        "readable": true
+      },
+      "decode_gate": {
+        "passed": true,
+        "logits_finite": true,
+        "n_ids": 24,
+        "n_out_of_range": 0,
+        "empty": false,
+        "vocab_size": 130560,
+        "rejected_reasons": [],
+        "note": "finite-and-in-range gate; replaces 'non-degenerate' proxy"
+      },
+      "error": null,
+      "contract": {
+        "beta": 1.0,
+        "eps": 0.1,
+        "role_snr": 0.5,
+        "inequality": "‖Δ‖₂ ≤ βε‖x‖₂",
+        "note": "scale-contracted, NOT L2-calibrated; NOT training"
+      }
+    },
+    "B_v83_raw_negative_control": {
+      "text": "",
+      "n_new": 24,
+      "error": null,
+      "out_of_range_ids": 24,
+      "readability": {
+        "n_chars": 0,
+        "cjk": 0,
+        "latin_mojibake": 0,
+        "has_chinese": false,
+        "readable": false
+      },
+      "note": "负对照：未校准直接全开。不是交付配置，也不是成品行为。",
+      "theory_explanation": "v8.3 raw β=1: 1e4~1e5 injection → RMSNorm overflow → NaN logits → `NaN > best_v` always False → best_i stayed at sentinel -1 → 24/24 out-of-range ids → decode dropped every token → EMPTY STRING. Not UTF-8 mojibake; the worst form of '乱码' produces no character at all.",
+      "not_rerun": true
+    }
+  },
+  "answer": {
+    "beta0_speaks": true,
+    "beta_positive_speaks": true,
+    "beta_positive_text": "**我**（Self-Improvement Assistant）是一个由面壁 AI 团队开发的**对话系统**。我的",
+    "beta_positive_reason": "β=1 在尺度契约下：logits 全 finite、生成 id 全在 [0,V)、中文可读、无拉丁扩展乱码 ⇒ 开着融合分支也能说话。",
+    "remaining_caveat": "β=1 是尺度契约配置，不是 L2 校准后的成品；未做 logit KL / 配对 CI / ppl，不写能力或原生级结论。",
+    "strict_caveat": "完整 2.6 GB student 未落盘；本实测是 '真实权重 + 24 层融合 hook' 的前向，不是对已组装大文件的直接加载。"
+  },
+  "elapsed_s": 599.9,
+  "boundaries": [
+    "无 ppl / KL / 配对 CI / 能力结论",
+    "C 臂不是训练，是理论契约下的推理",
+    "token 仅从环境读取，未写入任何文件",
+    "未删除/修改/推送任何仓库条目"
+  ]
+}

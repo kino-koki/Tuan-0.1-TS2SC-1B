@@ -1,0 +1,44 @@
+{
+  "source": "student_branch_v8.safetensors",
+  "total_bytes": 227096640,
+  "sha256": "f3fff446e97e056c6d12aa3329ee3148375555b9a40965e52007b312f1ed0085",
+  "chunk_bytes": 33554432,
+  "n_chunks": 7,
+  "chunks": [
+    {
+      "name": "weights/student_branch.part00",
+      "bytes": 33554432,
+      "sha256": "bcfbee9eb782e95c028919f753343993c0afa0c3d912093088f9924fb3bd5970"
+    },
+    {
+      "name": "weights/student_branch.part01",
+      "bytes": 33554432,
+      "sha256": "a53d9d238550ea9e1e7083633cc062fcb6a6ac96a140eab134cfc9f091fc1575"
+    },
+    {
+      "name": "weights/student_branch.part02",
+      "bytes": 33554432,
+      "sha256": "63a4ef426e089af41c0779c0273e13e16e7a94c7366c01cbc640725a3935e5af"
+    },
+    {
+      "name": "weights/student_branch.part03",
+      "bytes": 33554432,
+      "sha256": "e0015dcc5b9d02553e1a339b168ed0241da969edc5cf1480e4ed2338fa29a83c"
+    },
+    {
+      "name": "weights/student_branch.part04",
+      "bytes": 33554432,
+      "sha256": "1a892916aef7775a73786a35299aff98bde0b60f6cafff340d8dc13360a408a6"
+    },
+    {
+      "name": "weights/student_branch.part05",
+      "bytes": 33554432,
+      "sha256": "8eee70f260b4302c9d4034f40694d2d19250de3a498bbc6f0d62daf25cb4fa7f"
+    },
+    {
+      "name": "weights/student_branch.part06",
+      "bytes": 25770048,
+      "sha256": "3f33e65b8d1d58dfd9d8cc6358aa0c015db7a15d729cec19269e4d08563e2704"
+    }
+  ]
+}
