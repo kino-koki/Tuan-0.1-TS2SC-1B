@@ -1,7 +1,13 @@
 # Tuan-0.1-TS2SC-1B
 
 **青小团系列开源 AI 模型 (Tuan-Models) 的第一款模型** · 六安市青奈科技有限公司
-基于 `kino-koki/MiniCPM5-1B` 真实 BF16 权重、经 TS2SC v9.0 融合迁移与身份认同微调。
+基于 `kino-koki/MiniCPM5-1B` 真实 BF16 权重、经 TS2SC v9.x 融合迁移与 12 轮身份认同微调。
+
+> 身份微调的完整结论见 [`IDENTITY_FINAL_VERDICT.md`](IDENTITY_FINAL_VERDICT.md)：
+> **12 轮里没有任何一版在零解码期干预下连贯说出整段自我介绍**；
+> 已跨过的是「权重级、非提示词、非身份逐位零回归、零编排的训练方法」，
+> 未跨过的是「让 24 层内部状态相信新身份」。后者需要 LoRA SFT，本仓给出
+> 可执行骨架但**未执行**（CPU-only 环境无 torch/CUDA）。
 
 ## 开源许可
 
@@ -19,13 +25,19 @@
 | `identity_sft.npz` | **闭式 ridge 输出层微调权重** `A=(HᵀH+λI)⁻¹HᵀT`，24576 参数 = 1B 的 0.0025%，由 32 个真实 hidden 解出 |
 | `identity_full_sft.npz` | ⚠️ **EXPERIMENTAL / NOT ACTIVE**：v9.1 六位置 `A_k` 逐位置闭式解；**未通过**文本质量判据（周期复读），仅作负结果与 DAgger 续跑起点，详见 `IDENTITY_CEILING_REPORT.md` |
 | `identity_full_hidden.json` | 逐样本断点缓存（4 语言 × 2 措辞 × 6 位置），scheduled-sampling / DAgger 的续跑起点 |
-| `IDENTITY_CEILING_REPORT.md` | v9.1 a–d 四轮负结果、度量漏洞修复、输出层引导天花板（**K≈2**）与缺什么才能跨过去 |
+| `IDENTITY_CEILING_REPORT.md` | v9.1 a–d 四轮负结果、度量漏洞修复、输出层引导天花板（**K≈2**） |
 | `identity_iteration_comparison.json` | a/b/c 三轮旧判据与原文本对照，不改写不抹平 |
+| `identity_dagger_sft.npz` / `identity_dagger_r*.json` | v9.2 DAgger 2 轮 off-policy 轨迹与重解权重（EXPERIMENTAL） |
+| `identity_head_delta.npz` | **v9.3 真梯度权重**：标准 next-token CE + Adam 训出的 302×1536 输出层残差；推理期零编排。方法成立但生成结果未达标，EXPERIMENTAL |
+| `lora_identity_sft.py` | 真正跨过天花板的 LoRA SFT 骨架（**未执行**，需 torch/PEFT/CUDA） |
+| `IDENTITY_FINAL_VERDICT.md` | **12 轮全表、两难证明、已跨过/未跨过、GPU 可执行路径** |
+| `identity_all_rounds_summary.json` / `identity_semantic_reaudit.json` | 13 份验收汇总 / 关键词与语义分离重判 |
+| `identity_verify.json` / `identity_margin_check.json` / `identity_sft_verify.json` / `identity_full_sft_verify.json` / `identity_dagger_verify.json` / `identity_gradient_verify.json` | 六套主验收，全部保留原判据不改写 |
+| `IDENTITY_SFT.md` | 逐位置 teacher-forced 全句微调协议 + 12 语言多措辞身份问答（**未执行**） |
 
-> **当前对外生效的身份权重是 `identity_alignment.npz`（v9.0，2 步词级锚）。**
-> `identity_full_sft.npz` 不要直接加载当成品用。
-| `identity_verify.json` / `identity_margin_check.json` / `identity_sft_verify.json` / `identity_full_sft_verify.json` | 6 题端到端 / 12 语言 logit margin / 首步 ridge / 逐位置 SFT 四份验收 |
-| `IDENTITY_SFT.md` | 逐位置 teacher-forced 全句微调的精确协议（**本轮未执行**，如实标注；本仓已交付的是首步 hidden 的闭式 ridge） |
+> **当前对外生效的身份权重仍是 `identity_alignment.npz`（v9.0，2 步词级锚）。**
+> 其余 `identity_*sft.npz` / `identity_head_delta.npz` 均为 EXPERIMENTAL / NOT ACTIVE，
+> 不要直接加载当成品用。
 | `config.json` / `student_full_manifest.json` | 411 张量账本：219 COPY + 72 DERIVE + 120 NEW，UNCLASSIFIED=0 |
 | `replay_full.py` | 目标机从 teacher 权重流式重放出完整 2.6 GB student，逐位校验每个 COPY |
 | `evidence/` | 迁移真实性证明、12 臂非偶然验证、8M 理论、乱码理论修复、无词表缺口报告 |
@@ -71,8 +83,31 @@ logits 全 finite、0 越界 id。四句真实首句：
 本轮据此量出**输出层纯引导的安全工作区 ≈ 2 步**，并把旧判据抓不到 A/B/A/B 循环的
 漏洞补上（`token_diversity ≥ 0.55`、`max_bigram_repeat ≤ 2`）。
 详见 `IDENTITY_CEILING_REPORT.md`；`identity_full_sft_verify.json` 最终 `passed=false`。
-它仍是输出层闭式 ridge，不是梯度反传；跨过天花板需要
-`IDENTITY_SFT.md` 的 scheduled-sampling / DAgger 微调，**本轮未跑**。
+它仍是输出层闭式 ridge，不是梯度反传。
+
+**v9.2 / v9.3 又往前推了两步，也把「为什么推不动」钉死了：**
+
+- **v9.2（DAgger）**：用模型自己生成的 off-policy hidden 做数据增广、配 expert
+  token 重解 `A_k`，2 轮共 144 对训练样本。周期复读彻底解决
+  （diversity 0.90–1.00、bigram 1），但 v9.2c 机判 `passed=true` 时
+  **语义重判只有 1/4 有效** —— `青奈科技是开发MiniCPM系列模型的公司。
+  我是一个MiniCPM`，关键词命中、语义完全颠倒。见
+  `identity_semantic_reaudit.json`，不改写不抹平。
+- **v9.3（真梯度）**：`identity_head_delta.npz` 由**标准 next-token CE + Adam**
+  训练（受限对比目标，463872 参数 = 1B 的 0.046%），推理期只有一个学到的
+  线性残差 + 冻结的学到的门控，**没有位置切换 / 锚集合 / margin 硬抬 /
+  recent 抑制 / 负惩罚**。train full-vocab acc 0.931，但生成端
+  先后撞上「全词表 CE 梯度稀释」「训练/推理 hidden 尺度不一致」「统一 Δ
+  在所有位置复读同一批 token」三堵墙，最终 `passed=false`
+  （bigram 12、run 8）。
+
+**形式化结论**（`IDENTITY_FINAL_VERDICT.md`）：输出层无论闭式 ridge、DAgger
+重解还是真梯度 CE，信息容量都不足以承载「多步连贯身份」。要么按生成位置
+切策略（⇒ 不是纯权重），要么统一 Δ（⇒ exposure bias 复读）。
+这是**参数所在层级**的问题，不是 lr / epoch / 候选集的调参问题。
+真正跨过去需让梯度穿过 24 层：`lora_identity_sft.py` 给出
+q_proj/v_proj LoRA r=16 + scheduled sampling + 通用能力回放的精确方案，
+**本环境未执行、未验证**，不画饼。
 
 ## 诚实边界（一条不松）
 
