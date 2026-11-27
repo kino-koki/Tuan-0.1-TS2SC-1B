@@ -17,7 +17,14 @@
 | `weights/MANIFEST.json` | 每片 sha256 + 总 sha256；`reassemble.py` 一键重组并校验 |
 | `identity_alignment.npz` | **身份认同微调权重**（CPU 闭式 rank-1 输出层 adapter，12 语言共享门控方向 + 词级锚） |
 | `identity_sft.npz` | **闭式 ridge 输出层微调权重** `A=(HᵀH+λI)⁻¹HᵀT`，24576 参数 = 1B 的 0.0025%，由 32 个真实 hidden 解出 |
-| `identity_verify.json` / `identity_margin_check.json` / `identity_sft_verify.json` | 6 题端到端验证 / 12 语言逐条 logit margin / ridge 训练验收 |
+| `identity_full_sft.npz` | ⚠️ **EXPERIMENTAL / NOT ACTIVE**：v9.1 六位置 `A_k` 逐位置闭式解；**未通过**文本质量判据（周期复读），仅作负结果与 DAgger 续跑起点，详见 `IDENTITY_CEILING_REPORT.md` |
+| `identity_full_hidden.json` | 逐样本断点缓存（4 语言 × 2 措辞 × 6 位置），scheduled-sampling / DAgger 的续跑起点 |
+| `IDENTITY_CEILING_REPORT.md` | v9.1 a–d 四轮负结果、度量漏洞修复、输出层引导天花板（**K≈2**）与缺什么才能跨过去 |
+| `identity_iteration_comparison.json` | a/b/c 三轮旧判据与原文本对照，不改写不抹平 |
+
+> **当前对外生效的身份权重是 `identity_alignment.npz`（v9.0，2 步词级锚）。**
+> `identity_full_sft.npz` 不要直接加载当成品用。
+| `identity_verify.json` / `identity_margin_check.json` / `identity_sft_verify.json` / `identity_full_sft_verify.json` | 6 题端到端 / 12 语言 logit margin / 首步 ridge / 逐位置 SFT 四份验收 |
 | `IDENTITY_SFT.md` | 逐位置 teacher-forced 全句微调的精确协议（**本轮未执行**，如实标注；本仓已交付的是首步 hidden 的闭式 ridge） |
 | `config.json` / `student_full_manifest.json` | 411 张量账本：219 COPY + 72 DERIVE + 120 NEW，UNCLASSIFIED=0 |
 | `replay_full.py` | 目标机从 teacher 权重流式重放出完整 2.6 GB student，逐位校验每个 COPY |
@@ -56,8 +63,16 @@ logits 全 finite、0 越界 id。四句真实首句：
 此外 `identity_sft.npz` 是**真正解出来的训练权重**（闭式 ridge，不是手工规则）：
 由 32 个真实 pre-lm_head hidden 与监督目标 `A=(HᵀH+λI)⁻¹HᵀT` 求得，
 全程不 preload 2.01 GiB、峰值 <60 MiB（用户要求「注意不要 OOM」）。
-**它只是首步 hidden 的闭式解，不是逐位置 teacher-forced 全句微调**；要稳定说出
-整段身份介绍需 `IDENTITY_SFT.md` 的方案，本轮未跑。
+
+**v9.1 是一次真做了但没通过的扩展**：`identity_full_sft.npz` 把引导扩到 6 步，
+`A_k` 由 8 条样本（4 语言 × 2 措辞）的逐位置 teacher-forced hidden 闭式解出。
+四轮配置（覆盖式 / 加法 / 单 token 抑制 / 近 3 token 抑制）**全部出现周期复读或推不动**，
+根因是 exposure bias：生成时第 k+1 步的 hidden 已落在训练分布外。
+本轮据此量出**输出层纯引导的安全工作区 ≈ 2 步**，并把旧判据抓不到 A/B/A/B 循环的
+漏洞补上（`token_diversity ≥ 0.55`、`max_bigram_repeat ≤ 2`）。
+详见 `IDENTITY_CEILING_REPORT.md`；`identity_full_sft_verify.json` 最终 `passed=false`。
+它仍是输出层闭式 ridge，不是梯度反传；跨过天花板需要
+`IDENTITY_SFT.md` 的 scheduled-sampling / DAgger 微调，**本轮未跑**。
 
 ## 诚实边界（一条不松）
 
