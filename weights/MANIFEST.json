@@ -40,5 +40,6 @@
       "bytes": 25770048,
       "sha256": "3f33e65b8d1d58dfd9d8cc6358aa0c015db7a15d729cec19269e4d08563e2704"
     }
-  ]
+  ],
+  "delivery_beta": 1.0
 }
