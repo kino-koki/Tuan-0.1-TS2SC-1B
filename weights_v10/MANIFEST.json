@@ -1,0 +1,23 @@
+{
+  "source": "student_branch_v10.safetensors",
+  "total_bytes": 45847312,
+  "sha256": "1a96f234a50f9951f359941c2a84d278a52328573d5b0471c41e7ec0a3b85b3b",
+  "chunk_bytes": 33554432,
+  "n_chunks": 2,
+  "chunks": [
+    {
+      "name": "weights_v10/student_branch_v10.part00",
+      "bytes": 33554432,
+      "sha256": "12dd0d94dc11d01069bc5b1aaf53550e34ab648be813280df1d79c7ec4a3376e"
+    },
+    {
+      "name": "weights_v10/student_branch_v10.part01",
+      "bytes": 12292880,
+      "sha256": "536cacb773fe6291a2991063b1fb08da4981e257251d5a2fd25365bb3839ddfc"
+    }
+  ],
+  "delivery_beta": 1.0,
+  "architecture": "SGC_V10_FROZEN_3SIDECAR",
+  "n_tensors": 312,
+  "n_layers": 24
+}

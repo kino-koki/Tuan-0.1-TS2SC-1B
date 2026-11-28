@@ -1,21 +1,22 @@
-NOTICE — MiniCPM5-1B-TS2SC
+NOTICE — MiniCPM5-1B-TS2SC (v10)
 
 Copyright 2026 TS2SC contributors / 六安市青奈科技有限公司
 
 This product includes software developed under the TS2SC project
-(https://github.com/kino-koki/TS2SC), licensed under the Apache License 2.0.
+(https://github.com/kino-koki/TS2SC), Apache License 2.0.
 
-DELIVERY: a beta>0 SimplCore fusion model over MiniCPM5-1B teacher weights.
-The 24-layer SGC branch is ACTIVE by default (inference_default.json, beta=1.0).
-IDENTITY FINE-TUNING IS FULLY RETIRED: no identity adapter, gate, anchor,
-margin, suppression or negative penalty is loaded in the delivery path.
+DELIVERY (v10): beta>0 SimplCore fusion over MiniCPM5-1B teacher weights.
+Architecture SGC_V10_FROZEN_3SIDECAR synced from
+kino-koki/SimplCore @ bec5ab8fd7. The 24-layer sidecar branch is ACTIVE
+(inference_default_v10.json, beta=1.0).
 
-The 219 COPY tensors are NOT redistributed here; replay_full.py reconstructs
-them from the upstream teacher with per-tensor bit-identical verification.
-Please review the upstream model's own license before use.
+IDENTITY FINE-TUNING IS FULLY RETIRED: no adapter, gate, anchor, margin,
+suppression or negative penalty is loaded. Historical identity_* files
+remain untouched (no entry deleted) but are NOT ACTIVE / not part of this
+delivery.
 
-Historical identity_* files remain in this repository untouched (no entry was
-deleted); they are RETIRED / NOT ACTIVE / not part of this delivery.
+The 219 COPY tensors are NOT redistributed here; replay_full_v10.py
+reconstructs them from upstream with per-tensor bit-identical verification.
+Review the upstream model's own license before use.
 
-"theoretically unlimited context" is a brand statement, not a measured result;
-see evidence/context_8m_theory.json.
+"theoretically unlimited context" is a brand statement, not measured.

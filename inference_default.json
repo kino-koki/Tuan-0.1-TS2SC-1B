@@ -1,13 +1,19 @@
 {
-  "schema": "TS2SC/inference-default-v9.6",
+  "schema": "TS2SC/inference-default-v10",
   "model": "MiniCPM5-1B-TS2SC",
+  "architecture": "SGC_V10_FROZEN_3SIDECAR",
   "beta": 1.0,
   "beta_mode": "dimensionless scale contract (T1'), NOT L2-calibrated",
-  "sgc_branch": "weights/student_branch.part* -> reassemble.py",
+  "branch_checkpoint": "student_branch_v10.safetensors / weights/*.part",
   "n_layers": 24,
-  "identity_adapter": "none",
-  "identity_assets": "RETIRED / not loaded / not part of this delivery",
+  "n_new_tensors": 312,
+  "identity_adapter": "none (RETIRED, never loaded)",
   "logit_bias_fn": "none",
-  "tokenizer": "upstream MiniCPM5-1B tokenizer.json (verbatim)",
-  "note": "β=0 仅用于逐位零回归对照；交付与默认推理均为 β=1.0"
+  "sidecars": [
+    "A 3-layer k=7 gated short conv",
+    "B CfC liquid gate (tau=2)",
+    "C Hadamard SE1 content-addressed binding"
+  ],
+  "frozen_core": "rho^tau*sin((tau+1)theta), FFT<->IIR, O(1) state",
+  "note": "beta=0 is bit-identical control only; delivery = beta=1.0"
 }
