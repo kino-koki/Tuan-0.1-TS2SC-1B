@@ -113,3 +113,24 @@ passed = true
 
 新增脚本 `v10_deep_audit.py` / `make_deep_report.py` / `verify_remote_v10.py`
 均可独立复跑。历史 `weights/` 与 `identity_*` 仍按用户指令保留、零删除。
+
+## v10.1 · 读取契约修正（自查纠偏，非新增能力）
+
+见 [`V10_1_READ_CONTRACT_REPORT.md`](V10_1_READ_CONTRACT_REPORT.md)。
+
+**发现自己埋的缺陷**：v10.0 的 `read_keys()` 谎报 `312/312` 全在前向，
+扰动审计实测 **10/13 ACTIVE、72/312 空挂**
+（`role.Wc` / `gate.alpha` / `gate.beta` 每层各一 × 24 层）——
+与 V7「SGC 只是空挂在 state_dict 里」同构。
+
+**修法**：三者以中性初值接入（0 / 1.0 / 0.0），成为 L2 可校准槽位；
+`gate.beta` 现在是 `beta_l.json` 的真正写回落点。
+`verified_read_keys()` 三态归类替代谎报，
+`27/27` 个 Δ 快照逐位相同 ⇒ **权重字节、manifest、2 个分片、
+上一轮全部生成证据一个没动、全部仍有效**。
+
+现在 `12 ACTIVE + 1 PERSISTED_INIT + 0 NOT_CONTRIBUTING`，
+由 `test_v10.py::test_16/17/18` 钉死，`18+39=57` 条回归全绿。
+
+> 不声称这 3 个参数「已在贡献」：中性初值只消除空挂、预留校准槽位。
+> `P-β` 仍 `NOT_TESTED`，`calibrate_beta_v10.py` 仍 `NOT_EXECUTED`。

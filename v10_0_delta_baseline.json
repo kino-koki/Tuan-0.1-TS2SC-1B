@@ -1,0 +1,199 @@
+{
+  "title": "v10.0 Δ baseline (pre read-contract fix)",
+  "date": "2026-11-28 17:22:54",
+  "d": 1536,
+  "beta": 1.0,
+  "n": 27,
+  "module_sha256": "c1008ab60bb5c92f8af5d9b64560dceb8a26e9357d1b4e775fd7d596ee530bc1",
+  "rows": [
+    {
+      "layer": 0,
+      "case": 0,
+      "pos": 0,
+      "norm": 0.003829285269603133,
+      "sha256": "48f11916f8535a52f0435d59eb02decf479de58ae5455146896af1e866af8472"
+    },
+    {
+      "layer": 0,
+      "case": 0,
+      "pos": 1,
+      "norm": 0.0038292850367724895,
+      "sha256": "ed3ad4ad733d3c937bf749f6f0fb84926bbe6fbc4387dbf856bb2c930ab81e7b"
+    },
+    {
+      "layer": 0,
+      "case": 0,
+      "pos": 5,
+      "norm": 0.003829285269603133,
+      "sha256": "e7072b1b109836b39dcd1ada301c31c1f7f4ff0fef503de016bc8a5525505737"
+    },
+    {
+      "layer": 0,
+      "case": 1,
+      "pos": 0,
+      "norm": 3.9962363243103027,
+      "sha256": "a2f8e7e6fb51ec6bead7cbc7d46943ee66be7d626be15cbe9800e2888f3f1d30"
+    },
+    {
+      "layer": 0,
+      "case": 1,
+      "pos": 1,
+      "norm": 3.9962363243103027,
+      "sha256": "d2351f917ad6ec50f2eb87653e6ea7746ccfad217a97725c5113799bf84c0dc4"
+    },
+    {
+      "layer": 0,
+      "case": 1,
+      "pos": 5,
+      "norm": 3.9962360858917236,
+      "sha256": "088e5f06d0993213629e84ad45d3b5059d99486166f3bd1d308a61abe0f3a71e"
+    },
+    {
+      "layer": 0,
+      "case": 2,
+      "pos": 0,
+      "norm": 4091.49853515625,
+      "sha256": "2d7f19e2d5664d9ada4345d3cbc086aac121ad9204bdbfdbc721f02e2e68b6f8"
+    },
+    {
+      "layer": 0,
+      "case": 2,
+      "pos": 1,
+      "norm": 4091.498779296875,
+      "sha256": "e2a4308ef24dc5dc5f4ccd10beba66a20f3759f15939942dbdda254dd9d52eb4"
+    },
+    {
+      "layer": 0,
+      "case": 2,
+      "pos": 5,
+      "norm": 4091.498779296875,
+      "sha256": "9f8ede58d304eee70103dd6bad086398a617093c195bfa557ba73f1a4345d12c"
+    },
+    {
+      "layer": 7,
+      "case": 0,
+      "pos": 0,
+      "norm": 0.0038948403671383858,
+      "sha256": "e142d454e2ccf41b418a511a3cfa7b251580376fcd70b66a7d8acf36e0fd8bd2"
+    },
+    {
+      "layer": 7,
+      "case": 0,
+      "pos": 1,
+      "norm": 0.0038948405999690294,
+      "sha256": "360e7983e531e6ba25c0e33ab30c0a185bec4990e805c042fce490eecc0913d3"
+    },
+    {
+      "layer": 7,
+      "case": 0,
+      "pos": 5,
+      "norm": 0.0038948403671383858,
+      "sha256": "a2dc0a190e0344288dfcacb10b249e340617c7ce2d31f2e8d8075f1a20bc3a45"
+    },
+    {
+      "layer": 7,
+      "case": 1,
+      "pos": 0,
+      "norm": 4.0544962882995605,
+      "sha256": "efde10c308ec0913d663f6b17d5e5f280f4f698ad7c6fe1c9836a7bea8d07d14"
+    },
+    {
+      "layer": 7,
+      "case": 1,
+      "pos": 1,
+      "norm": 4.0544962882995605,
+      "sha256": "19c026b0c2f19d1025554c020f2eb997ab83d7640ecb889e97740ea82033b58f"
+    },
+    {
+      "layer": 7,
+      "case": 1,
+      "pos": 5,
+      "norm": 4.0544962882995605,
+      "sha256": "deb954d317e9bd269f8bffc16bca1d1ad876cd219ff84ce42b1907f4fc21c736"
+    },
+    {
+      "layer": 7,
+      "case": 2,
+      "pos": 0,
+      "norm": 3930.7041015625,
+      "sha256": "3d3ed2132412ebe8c0219805dc73da697378a8270f23d06828b87a12a55c4926"
+    },
+    {
+      "layer": 7,
+      "case": 2,
+      "pos": 1,
+      "norm": 3930.704345703125,
+      "sha256": "689409e1966fa53d80814de789c53f10b766561fbb725f8a67da40786e399e40"
+    },
+    {
+      "layer": 7,
+      "case": 2,
+      "pos": 5,
+      "norm": 3930.7041015625,
+      "sha256": "8d55c104b6610aadd4fc2ffa6448799676c67b51e9310eedfb0bcc1c8d8589cc"
+    },
+    {
+      "layer": 23,
+      "case": 0,
+      "pos": 0,
+      "norm": 0.0038564654532819986,
+      "sha256": "163a7e7e10d99f37dabd2368ae0499e6e1623c664795afe7628dfc8a6223d863"
+    },
+    {
+      "layer": 23,
+      "case": 0,
+      "pos": 1,
+      "norm": 0.0038564654532819986,
+      "sha256": "ca96442f6a6f7d9dab7f0e61ec4bf5be3f934c8605e84854d0e5d1c96deba1d7"
+    },
+    {
+      "layer": 23,
+      "case": 0,
+      "pos": 5,
+      "norm": 0.0038564654532819986,
+      "sha256": "392678cc902e78e7c7eff157083c0b09ce208863dc04158a0abf6615f5b4b291"
+    },
+    {
+      "layer": 23,
+      "case": 1,
+      "pos": 0,
+      "norm": 3.9960567951202393,
+      "sha256": "3ca33d8f4994e3d2120f37011cb333eed650b728467d9cf300f0620ea2a7b196"
+    },
+    {
+      "layer": 23,
+      "case": 1,
+      "pos": 1,
+      "norm": 3.9960567951202393,
+      "sha256": "460bb1097cca42128ae0c70e5a570f781637cf4269dc38a9e2fec07a6e9d95ca"
+    },
+    {
+      "layer": 23,
+      "case": 1,
+      "pos": 5,
+      "norm": 3.9960567951202393,
+      "sha256": "aa49bfc7d56eebdc83ac625f3be4ca3c92b8471979554634c48d6abc82d1989c"
+    },
+    {
+      "layer": 23,
+      "case": 2,
+      "pos": 0,
+      "norm": 3992.835693359375,
+      "sha256": "99a11d7e42faa7ae1bd7cd6b31fde9a46bf069fc8b032f64f652b4d57100b170"
+    },
+    {
+      "layer": 23,
+      "case": 2,
+      "pos": 1,
+      "norm": 3992.83544921875,
+      "sha256": "632e8c8d099bdeb9a3caae6ab164a84b1c7a72d704f58919dd9f055455a6108e"
+    },
+    {
+      "layer": 23,
+      "case": 2,
+      "pos": 5,
+      "norm": 3992.835693359375,
+      "sha256": "50cedb23740f79400af7a4f38669b4d09944498cd7ee3c9862907003612b5dee"
+    }
+  ]
+}
