@@ -1,0 +1,86 @@
+[
+  {
+    "lang": "zh",
+    "q": "你好",
+    "mode": "T",
+    "text": "<think>\n\n</think>\n\n你好！有什么我可以",
+    "ids": [
+      8,
+      130063,
+      9,
+      130063,
+      75828,
+      1398,
+      13720,
+      87600
+    ],
+    "n_prompt": 10,
+    "n_new": 8,
+    "logits_finite": true,
+    "decode_gate": true,
+    "identity_markers": []
+  },
+  {
+    "lang": "zh",
+    "q": "你好",
+    "mode": "OFF",
+    "text": "<think>\n\n</think>\n\n你好！有什么我可以",
+    "ids": [
+      8,
+      130063,
+      9,
+      130063,
+      75828,
+      1398,
+      13720,
+      87600
+    ],
+    "n_prompt": 10,
+    "n_new": 8,
+    "logits_finite": true,
+    "decode_gate": true,
+    "identity_markers": []
+  },
+  {
+    "lang": "zh",
+    "q": "你好",
+    "mode": "ON_ALL",
+    "text": "<think>\n嗯，用户发送的是一条简单的",
+    "ids": [
+      8,
+      220,
+      16431,
+      82579,
+      44310,
+      367,
+      87524,
+      31527
+    ],
+    "n_prompt": 10,
+    "n_new": 8,
+    "logits_finite": true,
+    "decode_gate": true,
+    "identity_markers": []
+  },
+  {
+    "lang": "en",
+    "q": "Hi",
+    "mode": "ON_ALL",
+    "text": "<think>\nThe user's message is just",
+    "ids": [
+      8,
+      220,
+      608,
+      5390,
+      468,
+      6786,
+      357,
+      1230
+    ],
+    "n_prompt": 10,
+    "n_new": 8,
+    "logits_finite": true,
+    "decode_gate": true,
+    "identity_markers": []
+  }
+]

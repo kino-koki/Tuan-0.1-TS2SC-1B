@@ -161,3 +161,29 @@ DEFERRED 拒绝、24×13 广播自洽。`21+39=60` 条回归全绿。
 
 > 权重字节、manifest、2 个分片、219/219 全量审计、4 语言 10 臂生成
 > 全部未动、全部仍有效（全开逐位相同）。`P-β` 仍 `NOT_TESTED`。
+
+## v10.3 · 范围收窄：SGC + 外挂 + SMM，上下文 10M
+
+见 [`V10_3_SCOPED_DELIVERY.md`](V10_3_SCOPED_DELIVERY.md) 与
+[`scoped_capability_registry.json`](scoped_capability_registry.json)。
+
+按用户指令，本次交付**只继承三组**：G1 SGC 冻结核 / G2 三条外挂旁路 /
+G3 **SMM 记忆与自进化**。SMM 来自上游真实源码 `evolution_mixer.py` 的
+`FusedEvolutionMixer` / `CalibratedFusedMixer`（零阶巩固 `observe()`：
+τ 重复证据、dominance、cooldown、读回拒绝、capacity 淘汰、`rho_mem`）。
+
+- **开关法则不破**：全关逐位 ≡ 原模型；`smm_off` 与 v10.2 全开逐位相同，
+  故之前全部生成证据仍有效；全开三组继承。
+- **SMM 是显式门禁**：`S` 初值全零，未调 `observe()` 时贡献严格为零，
+  **不是**自发自演化。
+- **上下文开到 10M**：`max_position_embeddings = 10,485,760`。
+  分支侧 `advance_idle(10M)` 是 **O(1) 闭式实跑**，状态恒定；
+  teacher 侧全注意力 KV **240 GiB** + 80× RoPE 外推 ⇒
+  `INFEASIBLE_LEDGER`。**配置开到 10M ≠ 端到端 10M 已验证。**
+
+自查抓到并修掉两处：SMM 初值全零 + 散共现被门禁全拒差点又成「空挂」
+（改用结构化强共现后 16 commits / 读回命中）；SGC 与 SMM 相加突破
+T1' 总契约（改为总和统一投影，`smm_off` 零缩放保持逐位相同）。
+
+> 历史 31 项注册表、9 CONTRACT、2 DEFERRED 等条目按「不删除任何条目」
+> 原样保留，只是排除在本次继承声明之外。
