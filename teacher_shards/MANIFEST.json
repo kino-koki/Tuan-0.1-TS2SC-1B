@@ -1,0 +1,588 @@
+{
+  "schema": "TS2SC/v10.3-full-teacher-weights",
+  "upstream": "kino-koki/MiniCPM5-1B",
+  "purpose": "Self-contained full model weights: 219 teacher COPY tensors are now present in THIS repo, no external reconstruction.",
+  "n_upstream_shards": 22,
+  "upstream_shards": [
+    {
+      "index": 0,
+      "git_blob_sha1": "7ef8d687afad7539fb0f49536397b7b47e6cd638",
+      "bytes": 99614720
+    },
+    {
+      "index": 1,
+      "git_blob_sha1": "72daf9b02bbc24dd30dba9972ebdb3955f19a7f1",
+      "bytes": 99614720
+    },
+    {
+      "index": 2,
+      "git_blob_sha1": "c1c230c7f12de9d080cba8eec86e2912d3e73f66",
+      "bytes": 99614720
+    },
+    {
+      "index": 3,
+      "git_blob_sha1": "67bb87ed7ffc097c841e6af82a570b7cb9185242",
+      "bytes": 99614720
+    },
+    {
+      "index": 4,
+      "git_blob_sha1": "335c5158a0752c9dcb1529a1fd4df35994d13532",
+      "bytes": 99614720
+    },
+    {
+      "index": 5,
+      "git_blob_sha1": "c5f673cb8ca43174cae8ba6514382127538075d7",
+      "bytes": 99614720
+    },
+    {
+      "index": 6,
+      "git_blob_sha1": "2b16af0c0038295a1055e3aadccaf764073abf2f",
+      "bytes": 99614720
+    },
+    {
+      "index": 7,
+      "git_blob_sha1": "7de415c24f3368f26a1e9614d12d2ee795af8464",
+      "bytes": 99614720
+    },
+    {
+      "index": 8,
+      "git_blob_sha1": "8d466fa383785b142e5cec3da680f01bc4a133f2",
+      "bytes": 99614720
+    },
+    {
+      "index": 9,
+      "git_blob_sha1": "a45e5764c55c02cbc863b8f0271e00cd7bb05461",
+      "bytes": 99614720
+    },
+    {
+      "index": 10,
+      "git_blob_sha1": "e4cdabf8536416904786b4b06dbea15d798809f9",
+      "bytes": 99614720
+    },
+    {
+      "index": 11,
+      "git_blob_sha1": "fc66a20b1314f40e7f2ac6739dfbf012eb25f46d",
+      "bytes": 99614720
+    },
+    {
+      "index": 12,
+      "git_blob_sha1": "bfbbe1d453c1cd24fe510f9d1dc88293aba9e2c7",
+      "bytes": 99614720
+    },
+    {
+      "index": 13,
+      "git_blob_sha1": "e26b67b13db3e7db23d080f6f0d403f8b28e00e6",
+      "bytes": 99614720
+    },
+    {
+      "index": 14,
+      "git_blob_sha1": "68fe1619110140613d9e234102b47ed174ccbf67",
+      "bytes": 99614720
+    },
+    {
+      "index": 15,
+      "git_blob_sha1": "28a396b53ba71cdc27a6b8b893ff93e1cbe117fd",
+      "bytes": 99614720
+    },
+    {
+      "index": 16,
+      "git_blob_sha1": "fa3f2ac7912c7af41181c480148b76c65525bef2",
+      "bytes": 99614720
+    },
+    {
+      "index": 17,
+      "git_blob_sha1": "2c0d69f01989171693267486f99bffbf53f8afac",
+      "bytes": 99614720
+    },
+    {
+      "index": 18,
+      "git_blob_sha1": "aa8558074cd8763610933ceee0822558edfde132",
+      "bytes": 99614720
+    },
+    {
+      "index": 19,
+      "git_blob_sha1": "ff47328550e59431905ea9cb6e5e1454a8c6b73e",
+      "bytes": 99614720
+    },
+    {
+      "index": 20,
+      "git_blob_sha1": "bd1ed729b32204e1d42d62e033f5dc35298ce7a4",
+      "bytes": 99614720
+    },
+    {
+      "index": 21,
+      "git_blob_sha1": "c1ab8f5920a730d5caabddab3899ca40ebfda1fc",
+      "bytes": 69381792
+    }
+  ],
+  "subshard_bytes": 33554432,
+  "n_subshards": 66,
+  "subshards": [
+    {
+      "path": "teacher_shards/part_00_00.bin",
+      "upstream_shard": 0,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "0d25769a9d526f21299c93f8768865e2df55ae907b474029be552862ac7e0ff6"
+    },
+    {
+      "path": "teacher_shards/part_00_01.bin",
+      "upstream_shard": 0,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "e10f2ab700d2f16691c7d5b4465d99b9c66dc27b975f2c1ac4fda3296904ae3b"
+    },
+    {
+      "path": "teacher_shards/part_00_02.bin",
+      "upstream_shard": 0,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "a5fff6d09c0a1ce823222f487ea2f7ead1387d0b1c046900d6f5b69f88c74ffb"
+    },
+    {
+      "path": "teacher_shards/part_01_00.bin",
+      "upstream_shard": 1,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "88af0d110eba75389d24f1e312dae3845614841f216649b43b4670fe3e49325d"
+    },
+    {
+      "path": "teacher_shards/part_01_01.bin",
+      "upstream_shard": 1,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "0f9df99e68adc1c7459bca9f9a9db2f114951b7bed8fbed7c3e64a7242d12522"
+    },
+    {
+      "path": "teacher_shards/part_01_02.bin",
+      "upstream_shard": 1,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "7769ee82c3b5347ee40c9ca594a14ff135ebfc709787463a69389ab1cb9eac8d"
+    },
+    {
+      "path": "teacher_shards/part_02_00.bin",
+      "upstream_shard": 2,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "8762b6b23deedf5e07489fefcb8034a19f9b9d38c457d4e03983c0848d3c94e8"
+    },
+    {
+      "path": "teacher_shards/part_02_01.bin",
+      "upstream_shard": 2,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "bb6029995a7f05c14ec9a2fa9ced8e48f72955b9eafeae8e8b6115636fcdf1ca"
+    },
+    {
+      "path": "teacher_shards/part_02_02.bin",
+      "upstream_shard": 2,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "0eea64e13bfd70c26821f0525b764c92d3a837b3ee5070e863d8e6d16229d43b"
+    },
+    {
+      "path": "teacher_shards/part_03_00.bin",
+      "upstream_shard": 3,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "24d6264a47f11f8134f62a6f2c1eefe6b3c6c03d7d3b82d4020f55715139203a"
+    },
+    {
+      "path": "teacher_shards/part_03_01.bin",
+      "upstream_shard": 3,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "837ecee34e342eb5d5b16a12ba3627d0203a8e863356fdf66d8e5bc0166c0e51"
+    },
+    {
+      "path": "teacher_shards/part_03_02.bin",
+      "upstream_shard": 3,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "aeb208e6461ae7ebf14eec4aa48fe0f5064b1a81b929f10735cfdb68d888d98d"
+    },
+    {
+      "path": "teacher_shards/part_04_00.bin",
+      "upstream_shard": 4,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "6b95a943ab80cd6612ea60a515e70934fd6bd0e637c989f8fffc100c82addadd"
+    },
+    {
+      "path": "teacher_shards/part_04_01.bin",
+      "upstream_shard": 4,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "3af1a0d85d098c51cde1b107e122d93f3e5ed09d7decfbaeee0619fbff392808"
+    },
+    {
+      "path": "teacher_shards/part_04_02.bin",
+      "upstream_shard": 4,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "710cc0fd8d1c2e7540d8b5644350cb47f7447ac688335200c340b8abc3a74a4d"
+    },
+    {
+      "path": "teacher_shards/part_05_00.bin",
+      "upstream_shard": 5,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "d970ca2e4a9e7d51680a517bfb0ac55a82b92cbe80b329b6c5e0a6b88148d952"
+    },
+    {
+      "path": "teacher_shards/part_05_01.bin",
+      "upstream_shard": 5,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "c8feaef3cd702d855f0114f019b59ffc9a14947e946fc3ce8a2fe8c489a204f9"
+    },
+    {
+      "path": "teacher_shards/part_05_02.bin",
+      "upstream_shard": 5,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "7b0ec7c433ae15ab1ff88fc857c14304ec9bf61010d2516b181fdbc7afbcfb81"
+    },
+    {
+      "path": "teacher_shards/part_06_00.bin",
+      "upstream_shard": 6,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "6e31274fc69cc4dcea69f56d565e16885a62930c0164c09973c08a534db6f771"
+    },
+    {
+      "path": "teacher_shards/part_06_01.bin",
+      "upstream_shard": 6,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "03d0ea380754236a6634e304658a6c91cf40b138499c62cb60618020f14dba80"
+    },
+    {
+      "path": "teacher_shards/part_06_02.bin",
+      "upstream_shard": 6,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "84d912ec051144baabe7defb917d98536ba3a1cd9c693b8990b46ed922f0ab87"
+    },
+    {
+      "path": "teacher_shards/part_07_00.bin",
+      "upstream_shard": 7,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "a3e7422d19b7b5b0f1dbbd96c0c1bc6c5fde7867ad24784bfce56e6d4f66c43b"
+    },
+    {
+      "path": "teacher_shards/part_07_01.bin",
+      "upstream_shard": 7,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "4dfdd112952465f5e158615fe427aa0ee9a8f37b10f06fc0ec6c7ee87099a3ce"
+    },
+    {
+      "path": "teacher_shards/part_07_02.bin",
+      "upstream_shard": 7,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "7140a2868698ec48113e17f448599ee83bc769a6250319d78d7ea6989bf66b97"
+    },
+    {
+      "path": "teacher_shards/part_08_00.bin",
+      "upstream_shard": 8,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "6a0a0d542e83fb683933f1b291bfd18a39b42b80a178a3baf47a0bc6798ee369"
+    },
+    {
+      "path": "teacher_shards/part_08_01.bin",
+      "upstream_shard": 8,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "e6267751f44dbe3cdf3979a969435fd9e12eeedc49e471f5491388f710a010aa"
+    },
+    {
+      "path": "teacher_shards/part_08_02.bin",
+      "upstream_shard": 8,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "86b0ee1c3e2b7328c9741c539505cec8f6dbc50eb45654b46ca89fc3560dcce2"
+    },
+    {
+      "path": "teacher_shards/part_09_00.bin",
+      "upstream_shard": 9,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "261b92cb05bc6b72580a1fede53e426b83483e680d9bc78f656fe5dc030d98ff"
+    },
+    {
+      "path": "teacher_shards/part_09_01.bin",
+      "upstream_shard": 9,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "745ff52814210f15a758c654a838aabbe6a6d724d1c6a6cfe4ea07b288945a6c"
+    },
+    {
+      "path": "teacher_shards/part_09_02.bin",
+      "upstream_shard": 9,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "76d2aa97b1dbf8db2545e3456e5e90c1612b072b3b5b4d2f3c4bacef6fe9891c"
+    },
+    {
+      "path": "teacher_shards/part_10_00.bin",
+      "upstream_shard": 10,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "699287dda7eaea4c75b871be6a1b8464502b108b742e5a4df21aaa2f148dd56b"
+    },
+    {
+      "path": "teacher_shards/part_10_01.bin",
+      "upstream_shard": 10,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "05afd53be968199aaff856185d9d7941a34f938c9014fb73e9862f19e21d8b92"
+    },
+    {
+      "path": "teacher_shards/part_10_02.bin",
+      "upstream_shard": 10,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "c4df13c5841cd814e8c48a7727e3399d121f54f4e27eb534ad8c17ec7500ec80"
+    },
+    {
+      "path": "teacher_shards/part_11_00.bin",
+      "upstream_shard": 11,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "a81c849eb5bf22744c694ad7be43dcffcc01b951bf76df6c22d0f39200f5550b"
+    },
+    {
+      "path": "teacher_shards/part_11_01.bin",
+      "upstream_shard": 11,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "6c88337e07d629738e7d0c9300d684b1fe474e682fbafbd656e07951e45e17ce"
+    },
+    {
+      "path": "teacher_shards/part_11_02.bin",
+      "upstream_shard": 11,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "1618b6e9c3a810be5b3457ebe10c1255fda899c1a367bcaaf4fe78b6cffa44b1"
+    },
+    {
+      "path": "teacher_shards/part_12_00.bin",
+      "upstream_shard": 12,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "7ff1d8ff46e19b2d8fc5b229e4dfb8cc4da375a8381c3dd7be82ed2b929e1877"
+    },
+    {
+      "path": "teacher_shards/part_12_01.bin",
+      "upstream_shard": 12,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "35bfbc434b9ced82227561ab124c06cf2933937f870c100c3dd23233afaaf11d"
+    },
+    {
+      "path": "teacher_shards/part_12_02.bin",
+      "upstream_shard": 12,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "cfbf573284b94ef170b7726e4c92f612569bf1a5b98678a923e627a6c87964cc"
+    },
+    {
+      "path": "teacher_shards/part_13_00.bin",
+      "upstream_shard": 13,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "99a0ed0403e2072ff7f4cffa103cebf9b72c0207adfb16b644e3154ef0af43f0"
+    },
+    {
+      "path": "teacher_shards/part_13_01.bin",
+      "upstream_shard": 13,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "c8ca7bf3fc855a1b209c257a6d1f3041b3a387d360befc9567feb55871f4f425"
+    },
+    {
+      "path": "teacher_shards/part_13_02.bin",
+      "upstream_shard": 13,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "4172384247137c279d6e3a3b0b26149427a4e82eee82c3c33fb1095817148db3"
+    },
+    {
+      "path": "teacher_shards/part_14_00.bin",
+      "upstream_shard": 14,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "64638909b031bed4c8ba09bba867711a185ba11a10aecee365562fe32bac4f14"
+    },
+    {
+      "path": "teacher_shards/part_14_01.bin",
+      "upstream_shard": 14,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "1643f1d937d4ca4b2d2c7fe8231b31b6368678ea4b954ec9268fc0ebdc3adbf4"
+    },
+    {
+      "path": "teacher_shards/part_14_02.bin",
+      "upstream_shard": 14,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "b97d7482a079e6cce2970fd380a974839af5d57c52971cae9d9f98066f10c8d5"
+    },
+    {
+      "path": "teacher_shards/part_15_00.bin",
+      "upstream_shard": 15,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "1697cb85c53d9401c277b12d7033259c3f852a581aba32969b227517c787ea39"
+    },
+    {
+      "path": "teacher_shards/part_15_01.bin",
+      "upstream_shard": 15,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "eaefd8ee1af964aacd6a9ee52fdd1b406ee352c51377e6f8fe70b67f015b1805"
+    },
+    {
+      "path": "teacher_shards/part_15_02.bin",
+      "upstream_shard": 15,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "2b153c8fadd1bccf145a8a3b5111ba98920a1e4e023461521e50e9bf8a14d80c"
+    },
+    {
+      "path": "teacher_shards/part_16_00.bin",
+      "upstream_shard": 16,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "03057b19bbaa10c7363be41deaf9f221bec11ba627612922d912691288602a12"
+    },
+    {
+      "path": "teacher_shards/part_16_01.bin",
+      "upstream_shard": 16,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "12b8472de6e506e3b423872e89ca463325e37668fb9590e45da7d6b8cad31851"
+    },
+    {
+      "path": "teacher_shards/part_16_02.bin",
+      "upstream_shard": 16,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "33ee3c529ba792e056955d4662593ddb0c07e3e4e4de23bb1cd1da0549bd6dd7"
+    },
+    {
+      "path": "teacher_shards/part_17_00.bin",
+      "upstream_shard": 17,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "eb308b38697f90e7b9d0af9e2a04d72ebb2943719880981079df9395c1fd4dbb"
+    },
+    {
+      "path": "teacher_shards/part_17_01.bin",
+      "upstream_shard": 17,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "ba90a4162165777df35ee4db7b65aac15405609310473562ebfd533f5274944e"
+    },
+    {
+      "path": "teacher_shards/part_17_02.bin",
+      "upstream_shard": 17,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "7de8b38f1e7f87116b1fef45ad7d3bfd128f5a2452e76e8b193176a6a2466677"
+    },
+    {
+      "path": "teacher_shards/part_18_00.bin",
+      "upstream_shard": 18,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "45a899524cae775fdd4fb8e73d8beecc95a1cdca3a3e314f718be51aea5a85c0"
+    },
+    {
+      "path": "teacher_shards/part_18_01.bin",
+      "upstream_shard": 18,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "eb08dd08e723ad6b9f4c98a7e4c21e19681b55cf0309e396031d79dd0165c528"
+    },
+    {
+      "path": "teacher_shards/part_18_02.bin",
+      "upstream_shard": 18,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "a25894f9f7d9c9a74f9b4ede19d404e07b8e01130f448f318627188ed9986f3b"
+    },
+    {
+      "path": "teacher_shards/part_19_00.bin",
+      "upstream_shard": 19,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "d3c761af48cada3563fd6a13651afca6b5edf6e0b1af87434d6dd2bbc17865a0"
+    },
+    {
+      "path": "teacher_shards/part_19_01.bin",
+      "upstream_shard": 19,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "066f549ca5b23f3e1e774e9fb751194f710883990951abc5d8342376073b3000"
+    },
+    {
+      "path": "teacher_shards/part_19_02.bin",
+      "upstream_shard": 19,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "adac8fa4b75cff1b611f5fd2daa7fe2064c0e9172dac90e4cecf827adcd3d2bd"
+    },
+    {
+      "path": "teacher_shards/part_20_00.bin",
+      "upstream_shard": 20,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "de13f00c655099dd491fa423363336645e31f225bde54a1ea8849eb702ed09ac"
+    },
+    {
+      "path": "teacher_shards/part_20_01.bin",
+      "upstream_shard": 20,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "be9c01e45613b6df78f55d6f98b86cc23d0c780b82ea9e8454efac948db8a530"
+    },
+    {
+      "path": "teacher_shards/part_20_02.bin",
+      "upstream_shard": 20,
+      "offset": 67108864,
+      "bytes": 32505856,
+      "sha256": "757005b4eabbc2bd7032488e2199dd486e97171e7e59b91a73614de9a9ce8d19"
+    },
+    {
+      "path": "teacher_shards/part_21_00.bin",
+      "upstream_shard": 21,
+      "offset": 0,
+      "bytes": 33554432,
+      "sha256": "561a0ab80cf226f33afc6c449aadaa8b8602f6a7ad2f9027c4acedb3ec653f98"
+    },
+    {
+      "path": "teacher_shards/part_21_01.bin",
+      "upstream_shard": 21,
+      "offset": 33554432,
+      "bytes": 33554432,
+      "sha256": "ca3bc80b1a30f95cb15b9000cd24f193132bfd576ac4a62dc22c99303a03edfb"
+    },
+    {
+      "path": "teacher_shards/part_21_02.bin",
+      "upstream_shard": 21,
+      "offset": 67108864,
+      "bytes": 2272928,
+      "sha256": "9021dab3cb82ed29c1f6f12ac0d0229d98c672ff212f02511030a6cda8c62a97"
+    }
+  ],
+  "total_bytes": 2161290912,
+  "teacher_sha256": "7ab8fd86563125929be78aeec8cb3969c7ed2ead3be1ab9d3ec0a9fa69c8660d",
+  "license_note": "teacher weights originate from openbmb/MiniCPM5-1B; see LICENSE and NOTICE. This repo is Apache-2.0 for its own contributions.",
+  "verification": "materialize_full_student_v10_3.py recomputes sha256 for all 579 entries before writing the full student."
+}

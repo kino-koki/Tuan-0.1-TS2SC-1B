@@ -1,22 +1,8 @@
-NOTICE — MiniCPM5-1B-TS2SC (v10)
+NOTICE · MiniCPM5-1B-TS2SC
 
-Copyright 2026 TS2SC contributors / 六安市青奈科技有限公司
+Copyright 2026 kino-koki / TS2SC contributors.
+This repository is licensed under Apache License 2.0 for its own contributions (migration code, SGC/SMM architecture, manifests, proofs).
 
-This product includes software developed under the TS2SC project
-(https://github.com/kino-koki/TS2SC), Apache License 2.0.
+FULL WEIGHTS ARE NOW SELF-CONTAINED: teacher_shards/ holds the complete 2.01 GiB of 219 teacher COPY tensors (22 upstream shards, git-blob-sha1 verified), and weights_v10/ + student_smm_v10_3.safetensors hold all 360 NEW tensors. materialize_full_student_v10_3.py assembles the full 579-tensor student with per-entry sha256 verification.
 
-DELIVERY (v10): beta>0 SimplCore fusion over MiniCPM5-1B teacher weights.
-Architecture SGC_V10_FROZEN_3SIDECAR synced from
-kino-koki/SimplCore @ bec5ab8fd7. The 24-layer sidecar branch is ACTIVE
-(inference_default_v10.json, beta=1.0).
-
-IDENTITY FINE-TUNING IS FULLY RETIRED: no adapter, gate, anchor, margin,
-suppression or negative penalty is loaded. Historical identity_* files
-remain untouched (no entry deleted) but are NOT ACTIVE / not part of this
-delivery.
-
-The 219 COPY tensors are NOT redistributed here; replay_full_v10.py
-reconstructs them from upstream with per-tensor bit-identical verification.
-Review the upstream model's own license before use.
-
-"theoretically unlimited context" is a brand statement, not measured.
+The teacher weights originate from openbmb/MiniCPM5-1B and are subject to their own upstream license; consult the upstream model card before redistribution. This repository makes no claim of endorsement by the upstream authors.
