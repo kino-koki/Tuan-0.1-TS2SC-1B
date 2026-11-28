@@ -89,3 +89,27 @@ passed = true
 - Qwen4-27B 仍未发布，本轮未访问其任何 config/权重/tokenizer。
 - 完整 2.6 GB student 未在沙盒落盘（磁盘限制），本仓是可复现产物 +
   逐位校验 recipe，不是伪装成成品的大文件。
+
+## 继续轮 · v10 深审（抽查→全量 / 2题→4语言）
+
+见 [`V10_DEEP_AUDIT_REPORT.md`](V10_DEEP_AUDIT_REPORT.md)：
+
+- **`v10_copy_full_audit.json`**：COPY 审计从 8 个抽查升级为
+  **219/219 全量逐位 sha256** 对照，全部 teacher 张量字节从本次
+  LIVE blob-sha 校验过的分片重算，mismatch=0。
+- **`v10_multilingual_verify.json`**：4 语言 × (T 纯 teacher / C0 β=0 /
+  C1 β=1) × 6 token，共 10 臂；**T 与 C0 端到端逐 token 相同**
+  （零回归从单元级 Δ=0 升级为生成级），C1 架构生效 **4/4**，
+  全 finite / 全解码守卫 / 身份标记泄漏 0。
+  **如实登记一处未满分**：C1 文本 `distinct = 3/4` —— 法语短问候
+  `Bonjour` 与英语 `Hi` 收敛到同一英文 `<think>` 开头（基座语言选择行为，
+  分支未强行改写），不包装成 4/4、不重跑洗白。
+- **`TS2SC_V10_FALSIFIABLE_LEDGER.md`**：把上游 v11 两条独立否决
+  （2× 对手步数对照失败、A2 崩坏区伪影）映射为 9 条可证伪命题 +
+  7 条永远不许写的句子。**同步架构能力 ≠ 继承超越主张**。
+- **`calibrate_beta_v10.py`**：L2 逐层 β_l 校准协议骨架，
+  `NOT_EXECUTED / PLAN-ONLY / 无 checkpoint / 无分数`；
+  `--execute` 在无 GPU 沙盒显式 REFUSE。
+
+新增脚本 `v10_deep_audit.py` / `make_deep_report.py` / `verify_remote_v10.py`
+均可独立复跑。历史 `weights/` 与 `identity_*` 仍按用户指令保留、零删除。
