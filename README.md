@@ -187,3 +187,24 @@ T1' 总契约（改为总和统一投影，`smm_off` 零缩放保持逐位相同
 
 > 历史 31 项注册表、9 CONTRACT、2 DEFERRED 等条目按「不删除任何条目」
 > 原样保留，只是排除在本次继承声明之外。
+
+## 完整权重自包含 + 终局证明
+
+`teacher_shards/` 现已含 **2.01 GiB 完整 teacher COPY 字节**
+（22 个上游分片逐个 LIVE git-blob-sha1 校验，切成 32 MiB 子片），
+加上 `weights_v10/`（312 个 SGC/外挂 NEW）与
+`student_smm_v10_3.safetensors`（48 个 SMM NEW），
+**仓库不再依赖外部重建**：
+
+```bash
+python materialize_full_student_v10_3.py --out student_full.safetensors
+# 目标机约需 2.6 GiB 磁盘；写出 579 张量并逐条 sha256 复验
+```
+
+组装逻辑已用 5 张量 mini 版真跑验证（`materialize_logic_test.json`），
+**不是**只写了脚本没测。
+
+[`FINAL_MIGRATION_PROOF.md`](FINAL_MIGRATION_PROOF.md) 给出 **7 组独立判据**
+证明迁移真实：219 teacher 逐位保留、360 NEW 逐字节复验且真实进前向、
+SGC/外挂/SMM 三组独立可归因、24/24 层生效、全关逐位 ≡ 原模型、
+生成级 `T==OFF / ON!=OFF`、SMM 零阶巩固真实写入。

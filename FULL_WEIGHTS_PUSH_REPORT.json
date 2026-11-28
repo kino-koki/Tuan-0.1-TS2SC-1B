@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-28 18:54:12",
+  "repo": "kino-koki/MiniCPM5-1B-TS2SC",
+  "commit": "e7909d3ac7f023112fff78df84f1025246141e4c",
+  "n_subshards": 66,
+  "total_bytes": 2161290912,
+  "total_gib": 2.013,
+  "teacher_sha256": "7ab8fd86563125929be78aeec8cb3969c7ed2ead3be1ab9d3ec0a9fa69c8660d",
+  "n_upstream_shards": 22,
+  "all_live_blob_sha1_verified": true,
+  "materializer": "materialize_full_student_v10_3.py",
+  "policy": "NO entry deleted (base_tree)",
+  "guard": "0 credential-like byte sequences uploaded",
+  "elapsed_s": 1005.8
+}
